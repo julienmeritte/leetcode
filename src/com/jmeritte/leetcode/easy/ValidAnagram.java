@@ -1,8 +1,6 @@
 package com.jmeritte.leetcode.easy;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 class ValidAnagram {
 
@@ -17,11 +15,11 @@ class ValidAnagram {
 
         int[] compteurs = new int[26];
         for (int i = 0; i < s.length(); i++) {
-            compteurs[s.charAt(i)-'a']++;
-            compteurs[t.charAt(i)-'a']--;
+            compteurs[s.charAt(i) - 'a']++;
+            compteurs[t.charAt(i) - 'a']--;
         }
 
-        for (int compte: compteurs) {
+        for (int compte : compteurs) {
             if (compte != 0) {
                 return false;
             }
@@ -34,21 +32,20 @@ class ValidAnagram {
      * Sorting Arrays
      * O(n log n) - 3ms
      */
-    /*public boolean isAnagram(String s, String t) {
+    public boolean isAnagram2(String s, String t) {
         char[] ss = s.toCharArray();
         char[] ts = t.toCharArray();
         Arrays.sort(ss);
         Arrays.sort(ts);
         return Arrays.equals(ss, ts);
-    }*/
+    }
 
     /**
      * Bruteforce
      * O(n²) - 269ms
      * indexOf() ajoute une itération n qui fait passer à n²
      */
-    /*
-    public boolean isAnagram(String s, String t) {
+    public boolean isAnagram3(String s, String t) {
         if (s.length() != t.length()) {
             return false;
         }
@@ -61,5 +58,4 @@ class ValidAnagram {
         }
         return true;
     }
-    */
 }

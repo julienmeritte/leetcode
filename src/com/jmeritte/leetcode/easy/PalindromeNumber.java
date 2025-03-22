@@ -9,6 +9,14 @@ class PalindromeNumber {
         return result;
     }
 
+    // TODO: A améliorer avec un vrai algo ?
+
+    /**
+     * Palindrome improvisé ??
+     * O(n)
+     * 5ms (72%)
+     * 44mb (17%)
+     */
     public boolean isPalindrome(int x) {
         if (x < 0) return false;
 
