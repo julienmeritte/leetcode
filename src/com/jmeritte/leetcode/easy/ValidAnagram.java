@@ -1,87 +1,65 @@
 package com.jmeritte.leetcode.easy;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 class ValidAnagram {
-    public boolean containsDuplicate(int[] nums) {
-        /**
-         * HashSet classique
-         * O(n) - 11ms
-         */
-        Set<Integer> numbers = new HashSet<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            if (numbers.contains(nums[i])) {
-                return true;
-            }
-            numbers.add(nums[i]);
+    /**
+     * Frequency counting
+     * O(n) - 6ms (42mb)
+     */
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
         }
 
-        return false;
-
-        /**
-         * HashSet (Comparaison taille)
-         * O(n) - 17ms
-         */
-        /*
-        Set<Integer> numbers = new HashSet<>();
-        for (int num : nums) {
-            numbers.add(num);
+        int[] compteurs = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            compteurs[s.charAt(i)-'a']++;
+            compteurs[t.charAt(i)-'a']--;
         }
 
-        if (numbers.size() != nums.length) {
-            return true;
-        }
-
-        return false
-        */
-
-        /**
-         * HashSet (Comparaison Stream)
-         * O(n) - 21ms
-         */
-        /*
-        Set<Integer> numbers = Arrays.stream(nums)
-                .boxed()
-                .collect(Collectors.toSet());
-
-        if (numbers.size() != nums.length) {
-            return true;
-        }
-
-        return false;
-        */
-
-        /**
-         * Array Sorting
-         * O(n log n) - 20ms
-         */
-        /*
-        Arrays.sort(nums);
-
-        for (int i = 0; i < nums.length - 1; i++) {
-            if (nums[i] == nums[i + 1]) {
-                return true;
+        for (int compte: compteurs) {
+            if (compte != 0) {
+                return false;
             }
         }
-        return false;
-        */
 
-        /**
-         * Bruteforce
-         * O(n²) - Timelimit exceeded
-         */
-        /*
-        for (int a = 0; a < nums.length; a++) {
-            for (int b = a + 1; b < nums.length; b++) {
-                if (nums[a] == nums[b]) {
-                    return true;
-                }
-            }
-        }
-        return false;
-         */
-
+        return true;
     }
+
+    /**
+     * Sorting Arrays
+     * O(n log n) - 3ms
+     */
+    /*public boolean isAnagram(String s, String t) {
+        char[] ss = s.toCharArray();
+        char[] ts = t.toCharArray();
+        Arrays.sort(ss);
+        Arrays.sort(ts);
+        return Arrays.equals(ss, ts);
+    }*/
+
+    /**
+     * Bruteforce
+     * O(n²) - 269ms
+     * indexOf() ajoute une itération n qui fait passer à n²
+     */
+    /*
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        for (Character c : s.toCharArray()) {
+            int index = t.indexOf(c);
+            if (index == -1) {
+                return false;
+            }
+            t = t.substring(0, index) + t.substring(index + 1);
+        }
+        return true;
+    }
+    */
 }
