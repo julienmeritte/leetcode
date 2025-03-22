@@ -1,4 +1,4 @@
-class Solution {
+class PalindromeNumber {
     private long power(int exposant) {
         int result = 1;
         for (int a = 0; a < exposant; a++) {
@@ -8,8 +8,7 @@ class Solution {
     }
 
     public boolean isPalindrome(int x) {
-        if (x < 0)
-            return false;
+        if (x < 0) return false;
 
         int xCopy = x;
         int length = 0;
