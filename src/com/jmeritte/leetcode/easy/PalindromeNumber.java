@@ -1,3 +1,5 @@
+package com.jmeritte.leetcode.easy;
+
 class PalindromeNumber {
     private long power(int exposant) {
         int result = 1;
