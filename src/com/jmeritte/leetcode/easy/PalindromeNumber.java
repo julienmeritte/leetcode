@@ -1,15 +1,27 @@
 package com.jmeritte.leetcode.easy;
 
 class PalindromeNumber {
-    private long power(int exposant) {
-        int result = 1;
-        for (int a = 0; a < exposant; a++) {
-            result *= 10;
-        }
-        return result;
-    }
 
-    // TODO: A améliorer avec un vrai algo ?
+    /**
+     * Two pointers en convertissant en String
+     * O(n)
+     * 6ms (beats 29%)
+     * 44mb (beats 47%)
+     */
+    public boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        String phrase = String.valueOf(x);
+
+        for (int i = 0, j = phrase.length() - 1; i < j; i++, j--) {
+            if (phrase.charAt(i) != phrase.charAt(j)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     /**
      * Palindrome improvisé ??
@@ -17,7 +29,7 @@ class PalindromeNumber {
      * 5ms (72%)
      * 44mb (17%)
      */
-    public boolean isPalindrome(int x) {
+    public boolean isPalindrome2(int x) {
         if (x < 0) return false;
 
         int xCopy = x;
@@ -52,5 +64,13 @@ class PalindromeNumber {
         }
 
         return true;
+    }
+
+    private long power(int exposant) {
+        int result = 1;
+        for (int a = 0; a < exposant; a++) {
+            result *= 10;
+        }
+        return result;
     }
 }
