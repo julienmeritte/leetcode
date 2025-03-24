@@ -2,6 +2,24 @@ package com.jmeritte.leetcode.easy;
 
 class PalindromeNumber {
 
+    /** Inversion sans conversion String
+     * O(log(n))
+     * 4 ms (beats 100%)
+     * 43mb (beats 98/96%)
+     */
+    public boolean isPalindrome3(int x) {
+        if (x < 0) {
+            return false;
+        }
+        int nouveau = 0;
+        int ancien = x;
+        while(ancien > 0) {
+            nouveau = (nouveau * 10) + (ancien % 10);
+            ancien /= 10;
+        }
+        return nouveau == x;
+    }
+
     /**
      * Two pointers en convertissant en String
      * O(n)
